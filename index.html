@@ -1,21 +1,39 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
- <meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <title>Praktikum 1 - Scene Pertama</title>
- <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+<meta charset="utf-8">
+<title>AR 2409020096 - Minggu 2 (Scene v1)</title>
+<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 </head>
-<body>
- <a-scene>
- <a-dodecahedron position="0.867 0.726 -2.837" radius="0.660" rotation="0 45 0" color="#0A3323"></a-dodecahedron>
- <a-octahedron position="0 1.25 -5" radius="1.25" color="#D3968C" animation="property: rotation; to: 0 360 0; loop: true; dur: 6000; easing: linear"></a-octahedron>
- <a-cylinder position="-1.339 1.129 -2.520" radius="0.5" height="1.5" color="#839958"></a-cylinder>
- <a-plane position="0 0 -4" rotation="-90 0 0" width="6" height="6"
- color="#7BC8A4"></a-plane>
- <a-sky color="#ECECEC"></a-sky>
- <a-text value="Zahrani nazwa - 2409020096 &#10;aslinya pengen jadi animator" position="0 3.2 -3.5" align="center" color="#222222"
+<body style="margin:0; overflow:hidden;">
+<a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+<!-- ===== PENCAHAYAAN ===== -->
+<a-light type="ambient" color="#ffffff" intensity="0.6"></a-light>
+<a-light type="directional" color="#ffffff" intensity="0.8" position="1 3 2"></a-light>
+<!-- ===== SCENE UTAMA (menempel pada marker) ===== -->
+<a-marker preset="hiro">
+<!-- Alas: bidang datar (diputar -90 derajat agar rebah) -->
+<a-plane position="0 0 0" rotation="-90 0 0" width="2" height="2"
+color="#e9e5fa" opacity="0.7" transparent="true"></a-plane>
+<!-- Objek 1: kubus (warna solid) -->
+<a-box position="-0.6 0.25 0" width="0.5" height="0.5" depth="0.5"
+color="#4C6EF5"></a-box>
+<!-- Objek 2: bola (material: metalness & roughness) -->
+<a-sphere position="0 0.3 0" radius="0.3"
+color="#D9531E" metalness="0.3" roughness="0.4"></a-sphere>
+<!-- Objek 3: silinder + animasi rotasi -->
+<a-octahedron position="0.6 0.3 0" radius="0.2" height="0.6" color="#0B7F73"
+animation="property: rotation; to: 0 360 0; dur: 4000; loop: true; easing: linear">
+</a-octahedron>
+<a-text value="Zahrani nazwa - 2409020096 &#10;aslinya pengen jadi animator" position="0 0.8 -0.9" rotation="-90 0 0" align="center" color="#222222"
 width="6"  animation="property: scale; to: 1.2 1.2 1.2; dir: alternate; loop: true; dur: 1000; easing: easeInOutCubic"></a-text>
- </a-scene>
+<a-ring position="0.2 0.5 -0.5" radius-inner="0.2" radius-outer="0.3" segments="32" color="#B0B3D6" metalness="0.3" roughness="0.4"></a-ring>
+<!-- Objek 4: kotak bertekstur (gambar dari folder assets) -->
+<a-box position="0 0.15 0.7" width="0.5" height="0.3" depth="0.5"
+src="assets/tekstur.jpg" animation="property: rotation; to: 0 360 0; dur: 4000; loop: true; easing: linear"></a-box>
+</a-marker>
+<a-entity camera></a-entity>
+</a-scene>
 </body>
 </html>
